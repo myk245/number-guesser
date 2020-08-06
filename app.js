@@ -19,7 +19,7 @@ const game = document.querySelector('#game'),
    guessInput = document.querySelector('#guess-input'),
    message = document.querySelector('.message');  
 
-// Assign UI min and max
+// assign UI min and max
 minNum.textContent = min; 
 maxNum.textContent = max; 
 
@@ -30,6 +30,16 @@ guessBtn.addEventListener('click', () => {
    // Validate
    if(isNaN(guess) || guess < min || guess > max) {
       setMessage(`Please enter a number between ${min} and ${max}.`, 'red')
+   }
+
+   // check if won
+   if (guess === winningNum) {
+      // disable input
+      guessInput.disabled = true; 
+      // change border color
+      guessInput.style.borderColor = 'green'; 
+      // set message 
+      setMessage(`${winningNum} is correct! You win!`, 'green');
    }
 });
 
